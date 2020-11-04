@@ -56,14 +56,14 @@ public class Main {
 //        graphHomeworkExercises._2KnGraphAndItsVertices(4);
 //        graphHomeworkExercises._3WeightedNetworkEdgePrinter(testMatrix6);
 //        graphHomeworkExercises._4FullMatrixFromItsBottomLeftHalf(testMatrix7);
-//        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix2)); // testMatrix2 is a cycle graph
+//        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix2));
 //        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix8));
 //        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix9));
 //        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix10));
 //        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix11));
 //        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix12));
-//        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix13)); // false because testMatrix13 is a directed graph
-//        System.out.println(graphHomeworkExercises._1eIsCycleDigraph(testMatrix13)); // true  (this method's been removed)
+//        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix13));
+//        System.out.println(graphHomeworkExercises._1eIsCycleDigraph(testMatrix13)); // (this method's been removed)
 //        System.out.println(graphHomeworkExercises._1eIsCycleGraph(testMatrix6));
     }
 
