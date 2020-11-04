@@ -131,13 +131,6 @@ public class GraphHomeworkExercises {
         return false;
     }
 
-    public boolean _1eIsCycleDigraph(int[][] adjacencyMatrix) {
-        for (int i = 0; i < adjacencyMatrix.length; i++)
-            for (int j = 0; j < adjacencyMatrix.length; j++)
-                if (adjacencyMatrix[i][j] == 1 && adjacencyMatrix[j][i] == 1) return true;
-        return _1eIsCycleGraph(matrixMirror(adjacencyMatrix));
-    }
-
     private int[][] matrixMirror(int[][] adjacencyMatrix) {
         for (int i = 0; i < adjacencyMatrix.length; i++)
             for (int j = 0; j < adjacencyMatrix.length; j++)
