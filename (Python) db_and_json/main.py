@@ -7,7 +7,7 @@ from mysql.connector import errorcode
 import re
 import matplotlib.pyplot as plotter
 import json
-# import numpy as np
+import numpy as np
 
 database_settings = {
     "user": "root",
@@ -206,13 +206,7 @@ def get_colors_for_graph(tuple_color_but_in_list, graph_length):
         print("Invalid color.")
         return tuple([0, 0, 0, 0])
     r, g, b = tuple_color_but_in_list
-    alpha = 0.8
-    alpha /= (graph_length-1)
-    initial_alpha = 0.2
-    alphas = [0.2]
-    for i in range(1, graph_length):
-        alphas.append(initial_alpha)
-        initial_alpha += alpha
+    alphas = np.linspace(0.2, 1, graph_length)
     returning_list = []
     for i in range(-1, -1 * (graph_length + 1), -1):
         returning_list.append(tuple([r, g, b, alphas[i]]))
