@@ -1,0 +1,36 @@
+Using Postman (in Json format):
+{
+   "customer":{
+      "firstName":"John",
+      "lastName":"Dylann",
+      "email":"idk@test.com"
+   },
+   "order":{
+      "totalPrice":36.98,
+      "totalQuantity":2
+   },
+   "books":[
+      {
+         "imageUrl":"assets/images/books/mpdbc.jpg",
+         "quantity":1,
+         "unitPrice":18.99,
+         "productId":26
+      },
+      {
+         "imageUrl":"assets/images/books/iracema.jpg",
+         "quantity":1,
+         "unitPrice":17.99,
+         "productId":51
+      }
+   ]
+}
+
+POST to: http://127.0.0.1:8080/api/checkout/purchase
+RESPONSE:
+{
+    "orderTrackingNumber": "db811240-c88a-463e-aaba-ea4820be378e"
+}
+
+And I can see it has been saved to my Database if I do a SELECT * FROM customers;
+Now I can create whatever table I want to make a history of all purchases.
+Saving the return output as a new customer was just a test and it worked out just fine!
