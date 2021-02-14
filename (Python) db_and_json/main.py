@@ -241,17 +241,15 @@ json_people_ages = {"John": 25, "Mary": 29, "Anna": 30}
 
 
 def get_items_from_json_file(file_name_with_extension):
-    file = open(file_name_with_extension, "r")
-    file_content = json.load(file)
-    file.close()
+    with open(file_name_with_extension, "r") as file:
+        file_content = json.load(file)
     return file_content
 
 
 def create_json_files_from_lists_with_dictionaries_inside(file_name, list_with_dictionaries_inside):
-    file = open(file_name, "w")
-    json.dump(list_with_dictionaries_inside, file)
-    file.close()
-
+    with open(file_name, "w") as file:
+        json.dump(list_with_dictionaries_inside, file)
+        
 
 if __name__ == "__main__":
     query_songs_for_bands_with_their_albums(database_settings, "beatles")
