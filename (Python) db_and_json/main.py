@@ -94,7 +94,7 @@ def query_songs_for_bands_with_their_albums(database_configuration, band_name):
                        f"INNER JOIN {test_database_tables['table_for_songs']} ON "
                        f"{test_database_tables['table_for_albums']}.{album_table_columns['album_id']} "
                        f"= {test_database_tables['table_for_songs']}.{song_table_columns['song_album_id']} "
-                       f"WHERE band.name LIKE '%?%';", (band_name))
+                       f"WHERE band.name LIKE '%%s%';", (band_name))
         rows = cursor.fetchall()
         cursor.close()
         for row in rows:
@@ -130,7 +130,7 @@ def query_songs_of_a_specific_user(database_configuration, username):
                        f"WHERE {test_database_tables['table_for_users']}.{users_table_columns['user_id']} "
                        f"= (SELECT {test_database_tables['table_for_users']}.{users_table_columns['user_id']} "
                        f"FROM {test_database_tables['table_for_users']} "
-                       f"WHERE {test_database_tables['table_for_users']}.{users_table_columns['user_name']} LIKE '%?%');", (username))
+                       f"WHERE {test_database_tables['table_for_users']}.{users_table_columns['user_name']} LIKE '%%s%');", (username))
         rows = cursor.fetchall()
         cursor.close()
         for row in rows:
