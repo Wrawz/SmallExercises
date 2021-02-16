@@ -125,20 +125,14 @@ def query_book_id_by_its_full_title(book_title: str) -> int:
 # SELECT * FROM book;
 
 
-def get_all_authors():
-    """
-    returns a list in json format
-    """
+def get_all_authors() -> List[Book]:
     with MySQLDbConnection as db:
         with db.cursor() as cursor:
             cursor.execute("SELECT name, birth, country FROM author")
             return [{'name': row[0], 'birth': row[1], 'country': row[2]} for row in cursor.fetchall()]
 
 
-def get_all_books():
-    """
-    returns a list in json format
-    """
+def get_all_books() -> List[Book]:
     with MySQLDbConnection() as db:
         with db.cursor() as cursor:
             cursor.execute("SELECT title, yearReleased, isRead FROM book")
