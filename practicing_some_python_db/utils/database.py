@@ -4,10 +4,6 @@ The only part I've coded inside this file was the MySQL part.
 """
 
 # pip install mysql-connector-python
-import re
-import sqlite3
-import mysql.connector
-from mysql.connector import errorcode
 from utils.database_connection import SQLite3DbConnection, MySQLDbConnection
 
 """Concerned with storing and retrieving books from a database"""
