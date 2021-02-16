@@ -13,8 +13,7 @@ The only part I've coded inside this file was the MySQL part.
 Note that the SQLite3 and MySQL tables are different from each other.
 """
 
-Book = Dict[str, Union[int, str]]
-Author = Dict[str, Union[int, str]]
+Book = Author = Dict[str, Union[int, str]]
 
 # SQLite3 from now on
 
