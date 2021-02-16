@@ -1,18 +1,24 @@
+#!/usr/bin/python3
+# pip install mysql-connector-python
+from utils.database_connection import SQLite3DbConnection, MySQLDbConnection
+from typing import List, Dict, Union
+
 """
 This file is for me to practice dealing with MySQL (which I'm used to dealing with) and SQLite3.
 The only part I've coded inside this file was the MySQL part.
 """
 
-# pip install mysql-connector-python
-from utils.database_connection import SQLite3DbConnection, MySQLDbConnection
+"""
+- Concerned with storing and retrieving books from a database -
+Note that the SQLite3 and MySQL tables are different from each other.
+"""
 
-"""Concerned with storing and retrieving books from a database"""
-
+Book = Dict[str, Union[int, str]]
 
 # SQLite3 from now on
 
 
-def add_book_sqlite3(book_title, author):
+def add_book_sqlite3(book_title: str, author: str) -> None:
     with SQLite3DbConnection("data.db") as db:
         with db.cursor() as cursor:
             cursor.execute("INSERT INTO book VALUES (?, ?, 0)", (book_title, author))
@@ -20,14 +26,14 @@ def add_book_sqlite3(book_title, author):
             # but it doesn't seem to happen the same way when it comes to MySQL
 
 
-def create_book_table_sqlite3():
+def create_book_table_sqlite3() -> None:
     with SQLite3DbConnection('data.db') as db:
         with db.cursor() as cursor:
             cursor.execute(
                 "CREATE TABLE IF NOT EXISTS book(name TEXT PRIMARY KEY NOT NULL, author TEXT, is_read INTEGER)")
 
 
-def get_all_books_sqlite3():
+def get_all_books_sqlite3() -> List[Book]:
     with SQLite3DbConnection("data.db") as db:
         cursor = db.cursor()
         cursor.execute("SELECT * FROM book")
@@ -37,7 +43,7 @@ def get_all_books_sqlite3():
 
 # MySQL from now on
 
-def create_book_tables():
+def create_book_tables() -> None:
     with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
             cursor.execute("CREATE TABLE IF NOT EXISTS author (" +
@@ -60,7 +66,7 @@ def create_book_tables():
                            "      ON UPDATE NO ACTION);")
 
 
-def add_book(book_title, year_released, authors_name):
+def add_book(book_title: str, year_released: str, authors_name: str) -> bool:
     book_id = query_book_id_by_its_full_title(book_title)
     if book_id > 0:
         print("Book already exists.")
@@ -76,7 +82,7 @@ def add_book(book_title, year_released, authors_name):
             return True
 
 
-def add_author(name, birth_year, country_name):
+def add_author(name: str, birth_year: str, country_name: str) -> None:
     with MySQLDbConnection() as db:
         with db.cursor() as cursor:
             cursor.execute(
@@ -84,7 +90,7 @@ def add_author(name, birth_year, country_name):
                 {'name': name, 'birth_year': birth_year, 'country_name': country_name})
 
 
-def query_author_id_by_name(name):
+def query_author_id_by_name(name: str) -> int:
     with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
             cursor.execute("SELECT id FROM author WHERE name LIKE %s;", ("%" + name + "%",))
@@ -93,7 +99,7 @@ def query_author_id_by_name(name):
             return row[0][0] if len(row) == 1 else -1
 
 
-def query_author_id_by_full_name(name):
+def query_author_id_by_full_name(name: str) -> int:
     with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
             cursor.execute("SELECT id FROM author WHERE name LIKE %s", (name,))
@@ -101,7 +107,7 @@ def query_author_id_by_full_name(name):
             return row[0][0] if len(row) == 1 else -1
 
 
-def query_book_id_by_its_full_title(book_title):
+def query_book_id_by_its_full_title(book_title: str) -> int:
     with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
             cursor.execute("SELECT id FROM book WHERE book.title LIKE %s", (book_title,))
@@ -139,14 +145,14 @@ def get_all_books():
             return [{'title': row[0], 'year_released': row[1], 'is_read': row[2]} for row in cursor.fetchall()]
 
 
-def mark_book_as_read(book_to_be_read):
+def mark_book_as_read(book_to_be_read: str) -> None:
     book_id = query_book_id_by_its_full_title(book_to_be_read)
     with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
             cursor.execute("UPDATE book SET isRead = 1 WHERE id = %s", (book_id,))
 
 
-def prompt_delete_book(book_title):
+def prompt_delete_book(book_title: str) -> None:
     book_id = query_book_id_by_its_full_title(book_title)
     with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
