@@ -78,9 +78,6 @@ def add_book(book_title, year_released, authors_name):
             cursor.execute("""INSERT INTO `pythonBooksAndAuthors`.`book` (author_id, title, yearReleased, isRead) 
                               VALUES (%s, %s, %s, 0)""", (author_id, book_title, year_released))
             return True
-    # author_id = 0
-    # connection.cursor().execute(f"INSERT INTO `pythonBooksAndAuthors`.`book` (`author_id`, `title`, `yearReleased`) "
-    #                             f"VALUES ({author_id}, {book_title}, {year_released});")
 
 
 def add_author(name, birth_year, country_name):
