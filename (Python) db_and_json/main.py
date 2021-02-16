@@ -8,7 +8,9 @@ import re
 import matplotlib.pyplot as plotter
 import json
 import numpy as np
-
+"""
+PLEASE CHECK https://github.com/Wrawz/SmallExercises/tree/main/practicing_some_python_db/utils FOR AN UP-TO-DATE FILE
+"""
 database_settings = {
     "user": "root",
     "password": "1dG81CvAkA",
