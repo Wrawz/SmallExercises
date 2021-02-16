@@ -95,7 +95,7 @@ def add_book(book_title, year_released, authors_name):
         return False
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"""INSERT INTO `pythonBooksAndAuthors`.`book` (author_id, title, yearReleased, isRead) 
+            cursor.execute("""INSERT INTO `pythonBooksAndAuthors`.`book` (author_id, title, yearReleased, isRead) 
                               VALUES (%s, %s, %s, 0)""", (author_id, book_title, year_released))
             connection.commit()
             return True
@@ -116,7 +116,7 @@ def add_author(name, birth_year, country_name):
 def query_author_id_by_name(name):
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"SELECT id FROM author WHERE name LIKE %s;", ("%" + name + "%",))
+            cursor.execute("SELECT id FROM author WHERE name LIKE %s;", ("%" + name + "%",))
             row = cursor.fetchall()
             # in case there are two people with the same name fetchall() does a better job than fetchone()
             return row[0][0] if len(row) == 1 else -1
@@ -133,7 +133,7 @@ def query_author_id_by_full_name(name):
 def query_book_id_by_its_full_title(book_title):
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"SELECT id FROM book WHERE book.title LIKE %s", (book_title,))
+            cursor.execute("SELECT id FROM book WHERE book.title LIKE %s", (book_title,))
             row = cursor.fetchall()
             # in case there are two people with the same name fetchall() does a better job than fetchone()
             return row[0][0] if len(row) == 1 else -1
