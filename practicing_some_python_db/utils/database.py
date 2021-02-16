@@ -133,7 +133,7 @@ def query_author_id_by_full_name(name):
 def query_book_id_by_its_full_title(book_title):
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"SELECT id FROM book WHERE book.title LIKE '{book_title}'")
+            cursor.execute(f"SELECT id FROM book WHERE book.title LIKE %s", (book_title,))
             row = cursor.fetchall()
             # in case there are two people with the same name fetchall() does a better job than fetchone()
             return row[0][0] if len(row) == 1 else -1
