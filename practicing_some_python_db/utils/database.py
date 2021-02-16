@@ -96,7 +96,7 @@ def add_book(book_title, year_released, authors_name):
     with get_connection() as connection:
         with connection.cursor() as cursor:
             cursor.execute(f"""INSERT INTO `pythonBooksAndAuthors`.`book` (author_id, title, yearReleased, isRead) 
-                              VALUES ({author_id}, %s, %s, 0)""", (book_title, year_released))
+                              VALUES (%s, %s, %s, 0)""", (author_id, book_title, year_released))
             connection.commit()
             return True
     # author_id = 0
