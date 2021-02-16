@@ -55,7 +55,7 @@ song_has_users_table_columns = {
 }
 
 
-def get_connection(database_configuration):
+def get_connection(database_configuration) -> mysql.connector.MySQLConnection:
     try:
         return mysql.connector.connect(user=database_configuration["user"],
                                        password=database_configuration["password"],
@@ -71,7 +71,7 @@ def get_connection(database_configuration):
             print(error)
 
 
-def query_songs_for_bands_with_their_albums(database_configuration, band_name):
+def query_songs_for_bands_with_their_albums(database_configuration, band_name) -> None:
     matches = re.match("^\\w+(\\s\\w+)*$", band_name)
     if not matches:
         print("Band name doesn't match the required string.")
@@ -107,7 +107,7 @@ def query_songs_for_bands_with_their_albums(database_configuration, band_name):
         connection.close()
 
 
-def query_songs_of_a_specific_user(database_configuration, username):
+def query_songs_of_a_specific_user(database_configuration, username) -> None:
     matches = re.match("^[A-z]+(\\s[A-z]+)*$", username)
     if not matches:
         print("Invalid username.")
@@ -143,7 +143,7 @@ def query_songs_of_a_specific_user(database_configuration, username):
         connection.close()
 
 
-def count_how_many_users_listen_to_each_song(database_configuration):
+def count_how_many_users_listen_to_each_song(database_configuration) -> list:
     connection = get_connection(database_configuration)
     song_and_number_of_listeners = []
     try:
@@ -173,7 +173,7 @@ def count_how_many_users_listen_to_each_song(database_configuration):
     return song_and_number_of_listeners
 
 
-def create_graph(filename):
+def create_graph(filename) -> None:
     matches = re.match("^\\w+$", filename)
     if not matches:
         print("Invalid filename.")
@@ -197,7 +197,7 @@ def create_graph(filename):
     plotter.savefig(filename + ".png", dpi=300)
 
 
-def get_colors_for_graph(tuple_color_but_in_list, graph_length):
+def get_colors_for_graph(tuple_color_but_in_list, graph_length) -> list[tuple[int, int, int, int]]]:
     matches = re.match("^[0-9]+$", str(graph_length))
     if not matches:
         print("Invalid length.")
@@ -213,7 +213,7 @@ def get_colors_for_graph(tuple_color_but_in_list, graph_length):
     return returning_list
 
 
-def get_colors_for_graph2(tuple_color_but_in_list, graph_length, result_list, highest_value):
+def get_colors_for_graph2(tuple_color_but_in_list, graph_length, result_list, highest_value) -> list[tuple[int, int, int, int]]]:
     matches = re.match("^[0-9]+$", str(graph_length))
     if not matches:
         print("Invalid length.")
@@ -240,13 +240,13 @@ string_people_ages = '{"John": 34, "Mary": 26, "Anna": 28}'
 json_people_ages = {"John": 25, "Mary": 29, "Anna": 30}
 
 
-def get_items_from_json_file(file_name_with_extension):
+def get_items_from_json_file(file_name_with_extension) -> dict:
     with open(file_name_with_extension, "r") as file:
         file_content = json.load(file)
     return file_content
 
 
-def create_json_files_from_lists_with_dictionaries_inside(file_name, list_with_dictionaries_inside):
+def create_json_files_from_lists_with_dictionaries_inside(file_name, list_with_dictionaries_inside) -> None:
     with open(file_name, "w") as file:
         json.dump(list_with_dictionaries_inside, file)
         
