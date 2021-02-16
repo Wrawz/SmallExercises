@@ -108,15 +108,15 @@ def add_author(name, birth_year, country_name):
     with get_connection() as db:
         with db.cursor() as cursor:
             cursor.execute(
-                'INSERT INTO `pythonBooksAndAuthors`.`author` (`name`, `birth`, `country`) VALUES (%s, %s, %s);',
-                (name, birth_year, country_name))
+                'INSERT INTO `pythonBooksAndAuthors`.`author` (`name`, `birth`, `country`) VALUES (%(name)s, %(birth_year)s, %(country_name)s);',
+                {'name': name, 'birth_year': birth_year, 'country_name': country_name})
             db.commit()
 
 
 def query_author_id_by_name(name):
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"SELECT id FROM author WHERE name LIKE '%{name}%'")
+            cursor.execute(f"SELECT id FROM author WHERE name LIKE %s;", ("%" + name + "%",))
             row = cursor.fetchall()
             # in case there are two people with the same name fetchall() does a better job than fetchone()
             return row[0][0] if len(row) == 1 else -1
