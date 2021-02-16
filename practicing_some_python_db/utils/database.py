@@ -42,7 +42,7 @@ def get_all_books_sqlite3():
 # MySQL from now on
 
 def create_book_tables():
-    with MySQLDbConnection as connection:
+    with MySQLDbConnection() as connection:
         with connection.cursor() as cursor:
             cursor.execute("CREATE TABLE IF NOT EXISTS author (" +
                            "  id INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT," +
