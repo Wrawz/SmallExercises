@@ -172,7 +172,7 @@ def mark_book_as_read(book_to_be_read):
     book_id = query_book_id_by_its_full_title(book_to_be_read)
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"UPDATE book SET isRead = 1 WHERE id = {book_id}")
+            cursor.execute("UPDATE book SET isRead = 1 WHERE id = %s", (book_id,))
             connection.commit()
 
 
@@ -180,5 +180,5 @@ def prompt_delete_book(book_title):
     book_id = query_book_id_by_its_full_title(book_title)
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"DELETE FROM book WHERE id = {book_id}")
+            cursor.execute("DELETE FROM book WHERE id = %s", (book_id,))
             connection.commit()
