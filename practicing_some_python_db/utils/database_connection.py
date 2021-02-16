@@ -8,7 +8,7 @@ class SQLite3DbConnection:
         self.connection = None
         self.host = host
 
-    def __enter__(self):
+    def __enter__(self) -> sqlite3.Connection:
         self.connection = sqlite3.connect(self.host)
         return self.connection
 
@@ -24,7 +24,7 @@ class MySQLDbConnection:
     def __init__(self):
         self.connection = None
 
-    def __enter__(self):
+    def __enter__(self) -> mysql.connector.MySQLConnection:
         try:
             self.connection = mysql.connector.connect(user="root",
                                                       password="1dG81CvAkA",
