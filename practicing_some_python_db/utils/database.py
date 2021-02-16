@@ -14,6 +14,7 @@ Note that the SQLite3 and MySQL tables are different from each other.
 """
 
 Book = Dict[str, Union[int, str]]
+Author = Dict[str, Union[int, str]]
 
 # SQLite3 from now on
 
@@ -125,14 +126,14 @@ def query_book_id_by_its_full_title(book_title: str) -> int:
 # SELECT * FROM book;
 
 
-def get_all_authors() -> List:
+def get_all_authors() -> List[Author]:
     with MySQLDbConnection as db:
         with db.cursor() as cursor:
             cursor.execute("SELECT name, birth, country FROM author")
             return [{'name': row[0], 'birth': row[1], 'country': row[2]} for row in cursor.fetchall()]
 
 
-def get_all_books() -> List:
+def get_all_books() -> List[Book]:
     with MySQLDbConnection() as db:
         with db.cursor() as cursor:
             cursor.execute("SELECT title, yearReleased, isRead FROM book")
