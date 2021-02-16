@@ -125,7 +125,7 @@ def query_author_id_by_name(name):
 def query_author_id_by_full_name(name):
     with get_connection() as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"SELECT id FROM author WHERE name LIKE '{name}'")
+            cursor.execute("SELECT id FROM author WHERE name LIKE %s", (name,))
             row = cursor.fetchall()
             return row[0][0] if len(row) == 1 else -1
 
