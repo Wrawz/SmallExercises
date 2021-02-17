@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # pip install mysql-connector-python
 from utils.database_connection import SQLite3DbConnection, MySQLDbConnection
 from typing import List, Dict, Union
