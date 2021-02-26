@@ -11,7 +11,7 @@ def get_arguments() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', '--length', type=int, help='Numbers of characters of your password.')
     options = parser.parse_args()
-    if options.length == 0:  # had to write this line bc if you pass arg 0, it'd be the same as None. So it would run the program anyway (and wouldn't warn the user about the minimum length)
+    if options.length == 0:  # had to write this line bc if we passed arg 0, it'd be the same as None. So it would run the program anyway (and wouldn't warn the user about the minimum length)
         return -1
     if not options.length:
         return 0
