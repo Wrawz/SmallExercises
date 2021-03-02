@@ -205,14 +205,14 @@ def create_graph(filename) -> None:
     plotter.savefig(filename + ".png", dpi=300)
 
 
-def get_colors_for_graph(tuple_color_but_in_list, graph_length) -> list[tuple[int, int, int, int]]]:
+def get_colors_for_graph(tuple_color_but_in_list, graph_length) -> list[tuple[float, float, float, float]]]:
     matches = re.match("^[0-9]+$", str(graph_length))
     if not matches:
         print("Invalid length.")
-        return tuple([0, 0, 0, 0])
+        return tuple([0.0, 0.0, 0.0, 0.0])
     if len(tuple_color_but_in_list) != 3:
         print("Invalid color.")
-        return tuple([0, 0, 0, 0])
+        return tuple([0.0, 0.0, 0.0, 0.0])
     r, g, b = tuple_color_but_in_list
     alphas = np.linspace(0.2, 1, graph_length)
     returning_list = []
@@ -221,14 +221,14 @@ def get_colors_for_graph(tuple_color_but_in_list, graph_length) -> list[tuple[in
     return returning_list
 
 
-def get_colors_for_graph2(tuple_color_but_in_list, graph_length, result_list, highest_value) -> list[tuple[int, int, int, int]]]:
+def get_colors_for_graph2(tuple_color_but_in_list, graph_length, result_list, highest_value) -> list[tuple[float, float, float, float]]]:
     matches = re.match("^[0-9]+$", str(graph_length))
     if not matches:
         print("Invalid length.")
-        return tuple([0, 0, 0, 0])
+        return tuple([0.0, 0.0, 0.0, 0.0])
     if len(tuple_color_but_in_list) != 3:
         print("Invalid color.")
-        return tuple([0, 0, 0, 0])
+        return tuple([0.0, 0.0, 0.0, 0.0])
     r, g, b = tuple_color_but_in_list
     alphas = []
     for i in result_list:
