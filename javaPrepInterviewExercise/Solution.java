@@ -13,12 +13,10 @@ public class Solution {
 * */
 
     public static void main(String[] args) {
-//        int[] testArr = {1, 2, 3, 4, 5};
-//        int k = 3;
-//        System.out.println(Arrays.toString(flip(testArr, k)));
-//        System.out.println(Arrays.toString(pancakeSort(new int[]{1, 5, 4, 3, 2}))); // (it works so far)
-        System.out.println(Arrays.toString(pancakeSort(new int[]{1, 5, 4, 3, 2}))); // returns [1, 2, 3, 4, 5]
-    }
+//            System.out.println(Arrays.toString(pancakeSort(new int[]{1, 5, 4, 3, 2}))); // returns [1, 2, 3, 4, 5]
+//            old way done without static methods
+            pancakeSort(new int[]{1, 5, 4, 3, 2});
+        }
 
     /* about flip()
     * arr = [1, 2, 3, 4, 5] and k = 3
@@ -26,20 +24,20 @@ public class Solution {
     * */
 
 
-    public static int[] flip(int[] arr, int k) {
-        int[] arr2 = new int[k];
-        for (int i = 0; i < k; i++) arr2[i] = arr[i];
-        for (int i = k-1, j = 0; i >= 0; i--, j++) arr[j] = arr2[i];
-        return arr;
-    }
+    public static void flip(int[] arr, int k) {
+            int[] arr2 = new int[k];
+            for (int i = 0; i < k; i++) arr2[i] = arr[i];
+            for (int i = k-1, j = 0; i >= 0; i--, j++) arr[j] = arr2[i];
+        }
 
-    public static int[] pancakeSort(int[] arr) {
+    public static void pancakeSort(int[] arr) {
         for (int i = 0; i < arr.length-1; i++)
             if (arr[i] > arr[i + 1]) {
                 for (int j = i+3; j > 1; j--) flip(arr, j);
                 flip(arr, i+3);
             }
-        return arr;
+        System.out.println(Arrays.toString(arr));
+        // these are static methods, so you don't need to return anything for this to work.
     }
 
 
