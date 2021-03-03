@@ -27,17 +27,17 @@ public class Solution {
     public static void flip(int[] arr, int k) {
             int[] arr2 = new int[k];
             for (int i = 0; i < k; i++) arr2[i] = arr[i];
-            for (int i = k-1, j = 0; i >= 0; i--, j++) arr[j] = arr2[i];
+            for (int i = k - 1, j = 0; i >= 0; i--, j++) arr[j] = arr2[i];
         }
 
     public static void pancakeSort(int[] arr) {
         for (int i = 0; i < arr.length-1; i++)
             if (arr[i] > arr[i + 1]) {
-                for (int j = i+3; j > 1; j--) flip(arr, j);
+                for (int j = i + 3; j > 1; j--) flip(arr, j);
                 flip(arr, i+3);
             }
         System.out.println(Arrays.toString(arr));
-        // these are static methods, so you don't need to return anything for this to work.
+        // these are static methods, so you don't need to return anything from .flip() for this to work.
     }
 
 
