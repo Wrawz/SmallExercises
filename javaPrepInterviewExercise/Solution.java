@@ -34,7 +34,7 @@ public class Solution {
         for (int i = 0; i < arr.length-1; i++)
             if (arr[i] > arr[i + 1]) {
                 for (int j = i + 3; j > 1; j--) flip(arr, j);
-                flip(arr, i+3);
+                flip(arr, i + 3);
             }
         System.out.println(Arrays.toString(arr));
         // these are static methods, so you don't need to return anything from .flip() for this to work.
