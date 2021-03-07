@@ -34,8 +34,7 @@ public class CheckoutServiceImplementation implements CheckoutService {
 
         // populate order with orderItems
         Set<Book> books = purchase.getBooks();
-//        books.forEach(book -> books.add(book));
-        books.addAll(books);
+        books.forEach(book -> order.add(book));
 
         // in case you had a 1-to-1 relationship table (between an address table and an order table)
         // and had an address to send
